@@ -1,201 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Booking Details | Azuris Coastal Hotel</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Cinzel+Decorative:wght@400;700;900&display=swap" />
-
-  <link rel="stylesheet" href="booking.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking Details | Azuris Coastal Hotel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="booking-style.css" />
 </head>
 
 <body>
-<div class="page">
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="header-bar">
-      <a href="room.html" class="back" aria-label="Back">
-        <svg viewBox="0 0 24 24"><polyline points="15 4 7 12 15 20"/></svg>
-      </a>
-      <h1>Booking Details</h1>
-      <a href="index.html" class="logo"><img src="image/logo.png" alt="Azuris Coastal Hotel" /></a>
-    </div>
-  </header>
+    <!-- ============================================================
+       BOOKING DETAILS SCREEN
+  ============================================================ -->
+    <main class="screen">
 
-  <!-- CONTENT PANEL -->
-  <main class="panel">
+        <!-- Header: back + title + logo -->
+        <header class="screen__header">
+            <a href="javascript:history.back()" class="screen__back" aria-label="Go back">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+            </a>
 
-    <!-- selected room -->
-    <section class="block">
-      <h2 class="label">Selected Room</h2>
-      <article class="room">
-        <img src="image/room-s.jpg" alt="Allora Cove room" />
-        <div class="room-info">
-          <h3>Allora Cove</h3>
-          <span class="room-type">Standard</span>
-          <strong class="room-price">₱ 4, 200 / night</strong>
-        </div>
-      </article>
-    </section>
+            <h1 class="screen__title">Booking Details</h1>
 
-    <!-- booking information -->
-    <section class="block">
-      <h2 class="label">Booking Information</h2>
-
-      <form class="form" id="bookingForm" action="payment.html">
-
-        <!-- dates -->
-        <div class="dates">
-          <div class="field">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3" y="5" width="18" height="16" rx="3"/>
-              <line x1="3" y1="10" x2="21" y2="10"/>
-              <line x1="8" y1="3" x2="8" y2="7"/>
-              <line x1="16" y1="3" x2="16" y2="7"/>
-              <circle cx="8" cy="14" r=".8" fill="currentColor"/>
-              <circle cx="12" cy="14" r=".8" fill="currentColor"/>
-              <circle cx="16" cy="14" r=".8" fill="currentColor"/>
-              <circle cx="8" cy="17.5" r=".8" fill="currentColor"/>
-              <circle cx="12" cy="17.5" r=".8" fill="currentColor"/>
-            </svg>
-            <div class="field-text">
-              <span class="field-label">Check - in</span>
-              <span class="field-value" id="checkInDate">Dec 12, 2026</span>
-              <span class="field-sub" id="checkInDay">(Saturday)</span>
+            <div class="screen__logo-wrap">
+                <img src="logo.png" alt="Azuris Coastal Hotel" class="screen__logo" />
             </div>
-          </div>
+        </header>
 
-          <div class="field">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3" y="5" width="18" height="16" rx="3"/>
-              <line x1="3" y1="10" x2="21" y2="10"/>
-              <line x1="8" y1="3" x2="8" y2="7"/>
-              <line x1="16" y1="3" x2="16" y2="7"/>
-              <circle cx="8" cy="14" r=".8" fill="currentColor"/>
-              <circle cx="12" cy="14" r=".8" fill="currentColor"/>
-              <circle cx="16" cy="14" r=".8" fill="currentColor"/>
-              <circle cx="8" cy="17.5" r=".8" fill="currentColor"/>
-              <circle cx="12" cy="17.5" r=".8" fill="currentColor"/>
-            </svg>
-            <div class="field-text">
-              <span class="field-label">Check - out</span>
-              <span class="field-value" id="checkOutDate">Dec 13, 2026</span>
-              <span class="field-sub" id="checkOutDay">(Sunday)</span>
+        <!-- Details card -->
+        <section class="summary">
+
+            <!-- Room -->
+            <div class="summary__room">
+                <img src="image/room-s.jpg" alt="Allora Cove room" class="summary__room-img" />
+                <div class="summary__room-info">
+                    <h2 class="summary__room-name">Allora Cove</h2>
+                    <p class="summary__room-rate" id="rate" data-rate="4200">₱ 4, 200 / night</p>
+                </div>
             </div>
-          </div>
+
+            <!-- Form fields -->
+            <form class="summary__details" id="detailsForm" novalidate>
+
+                <!-- Check-in -->
+                <div class="detail">
+                    <svg class="detail__icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="4.5" width="18" height="16" rx="3" />
+                        <line x1="3" y1="9.5" x2="21" y2="9.5" />
+                        <line x1="8" y1="2.5" x2="8" y2="6" />
+                        <line x1="16" y1="2.5" x2="16" y2="6" />
+                        <path class="dots" d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01M16 17h.01" />
+                    </svg>
+                    <label class="detail__label" for="checkin">Check - in</label>
+                    <input class="detail__date" type="date" id="checkin" value="2026-12-12" required />
+                </div>
+
+                <!-- Check-out -->
+                <div class="detail">
+                    <svg class="detail__icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="4.5" width="18" height="16" rx="3" />
+                        <line x1="3" y1="9.5" x2="21" y2="9.5" />
+                        <line x1="8" y1="2.5" x2="8" y2="6" />
+                        <line x1="16" y1="2.5" x2="16" y2="6" />
+                        <path class="dots" d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01M16 17h.01" />
+                    </svg>
+                    <label class="detail__label" for="checkout">Check - out</label>
+                    <input class="detail__date" type="date" id="checkout" value="2026-12-13" required />
+                </div>
+
+                <!-- Guests -->
+                <div class="detail">
+                    <svg class="detail__icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="8" r="4" />
+                        <path d="M4.5 21c0-4 3.4-6.5 7.5-6.5s7.5 2.5 7.5 6.5" />
+                    </svg>
+                    <span class="detail__label" id="guestsLabel">Guests</span>
+                    <div class="stepper" role="group" aria-labelledby="guestsLabel">
+                        <button type="button" class="stepper__btn" data-target="guests" data-step="-1"
+                            aria-label="Decrease guests">−</button>
+                        <output class="stepper__value" id="guests">2</output>
+                        <button type="button" class="stepper__btn" data-target="guests" data-step="1"
+                            aria-label="Increase guests">+</button>
+                    </div>
+                </div>
+
+                <!-- Rooms -->
+                <div class="detail">
+                    <svg class="detail__icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="2.5" width="9" height="19" rx="2.5" />
+                        <circle cx="7.5" cy="8" r="1.5" />
+                        <line x1="7.5" y1="9.5" x2="7.5" y2="14" />
+                        <line x1="12" y1="9" x2="22" y2="9" />
+                        <circle cx="7.5" cy="17" r=".6" />
+                    </svg>
+                    <span class="detail__label" id="roomsLabel">No. of Room</span>
+                    <div class="stepper" role="group" aria-labelledby="roomsLabel">
+                        <button type="button" class="stepper__btn" data-target="rooms" data-step="-1"
+                            aria-label="Decrease rooms">−</button>
+                        <output class="stepper__value" id="rooms">2</output>
+                        <button type="button" class="stepper__btn" data-target="rooms" data-step="1"
+                            aria-label="Increase rooms">+</button>
+                    </div>
+                </div>
+
+                <!-- Nights (auto) -->
+                <div class="detail">
+                    <svg class="detail__icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z" />
+                    </svg>
+                    <span class="detail__label">No. of Nights</span>
+                    <output class="detail__value" id="nights">1</output>
+                </div>
+
+                <p class="form__error" id="error" role="alert" hidden>
+                    Check-out date must be after check-in.
+                </p>
+            </form>
+
+            <!-- Room price -->
+            <div class="summary__price">
+                <span>Room Price</span>
+                <span id="roomPrice">₱ 8, 400</span>
+            </div>
+
+            <!-- Total -->
+            <div class="summary__total">
+                <span>Total Price</span>
+                <span id="totalPrice">₱ 8, 400</span>
+            </div>
+
+        </section>
+
+        <!-- Action -->
+        <div class="screen__actions">
+            <a href="booking-summary.html" class="btn btn--primary" id="continueBtn">Continue</a>
         </div>
 
-        <!-- guests -->
-        <label class="field select">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="8" r="4"/>
-            <path d="M4 21c0-4.5 3.5-7 8-7s8 2.5 8 7"/>
-          </svg>
-          <div class="field-text">
-            <span class="field-label">Guests</span>
-            <select name="guests">
-              <option>1 Adult</option>
-              <option>2 Adults</option>
-              <option>3 Adults</option>
-              <option selected>4 Adults</option>
-              <option>5 Adults</option>
-            </select>
-          </div>
-          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-        </label>
+    </main>
 
-        <!-- room types -->
-        <label class="field select">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M3 19V8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v11"/>
-            <rect x="3" y="12" width="18" height="4" rx="1"/>
-            <rect x="6" y="8.5" width="5" height="3" rx="1"/>
-            <rect x="13" y="8.5" width="5" height="3" rx="1"/>
-          </svg>
-          <div class="field-text">
-            <span class="field-label">Room Types</span>
-            <select name="roomType">
-              <option selected>Standard</option>
-              <option>Deluxe</option>
-              <option>Suite</option>
-            </select>
-          </div>
-          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-        </label>
+    <script>
+        (function () {
+            var RATE = Number(document.getElementById('rate').dataset.rate);
+            var LIMITS = { guests: [1, 10], rooms: [1, 5] };
 
-        <!-- no. of room -->
-        <label class="field select">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="5" y="2" width="14" height="20" rx="2"/>
-            <circle cx="9" cy="12" r="1.3"/>
-            <line x1="14" y1="9" x2="14" y2="15"/>
-          </svg>
-          <div class="field-text">
-            <span class="field-label">No. of Room</span>
-            <select name="rooms">
-              <option>1</option>
-              <option selected>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select>
-          </div>
-          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-        </label>
+            var checkin = document.getElementById('checkin');
+            var checkout = document.getElementById('checkout');
+            var guestsEl = document.getElementById('guests');
+            var roomsEl = document.getElementById('rooms');
+            var nightsEl = document.getElementById('nights');
+            var roomPriceEl = document.getElementById('roomPrice');
+            var totalEl = document.getElementById('totalPrice');
+            var errorEl = document.getElementById('error');
+            var continueBtn = document.getElementById('continueBtn');
 
-        <!-- no. of nights -->
-        <label class="field select">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/>
-          </svg>
-          <div class="field-text">
-            <span class="field-label">No. of Nights</span>
-            <select name="nights" id="nights">
-              <option selected>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-        </label>
+            // Format like the design: ₱ 8, 400
+            function peso(n) {
+                return '₱ ' + n.toLocaleString('en-US').replace(/,/g, ', ');
+            }
 
-      </form>
-    </section>
+            // Today (local) as yyyy-mm-dd, so past dates can't be picked
+            function todayISO() {
+                var d = new Date();
+                d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+                return d.toISOString().slice(0, 10);
+            }
 
-    <!-- footer -->
-    <footer class="foot">
-      <p>Review your booking infromation before<br />proceeding to payment.</p>
-      <button type="submit" form="bookingForm" class="btn">Continue to Payment</button>
-    </footer>
+            function nightsBetween(a, b) {
+                var ms = new Date(b) - new Date(a);
+                return Math.round(ms / 86400000);
+            }
 
-  </main>
+            function update() {
+                var nights = nightsBetween(checkin.value, checkout.value);
+                var rooms = Number(roomsEl.textContent);
+                var valid = checkin.value && checkout.value && nights > 0;
 
-</div>
+                errorEl.hidden = valid;
+                continueBtn.setAttribute('aria-disabled', String(!valid));
+                continueBtn.classList.toggle('is-disabled', !valid);
 
-<script>
-  // update check-out date when number of nights changes
-  const nights = document.getElementById('nights');
-  const checkIn = new Date(2026, 11, 12); // Dec 12, 2026
+                nightsEl.textContent = valid ? nights : 0;
+                var total = valid ? RATE * rooms * nights : 0;
+                roomPriceEl.textContent = peso(total);
+                totalEl.textContent = peso(total);
+            }
 
-  const fmt = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-  const day = d => '(' + d.toLocaleDateString('en-US', { weekday: 'long' }) + ')';
+            // Date limits
+            checkin.min = todayISO();
+            checkout.min = checkin.value || todayISO();
 
-  document.getElementById('checkInDate').textContent = fmt(checkIn);
-  document.getElementById('checkInDay').textContent  = day(checkIn);
+            checkin.addEventListener('change', function () {
+                checkout.min = checkin.value;
+                // push check-out forward if it's no longer after check-in
+                if (nightsBetween(checkin.value, checkout.value) < 1) {
+                    var d = new Date(checkin.value);
+                    d.setDate(d.getDate() + 1);
+                    checkout.value = d.toISOString().slice(0, 10);
+                }
+                update();
+            });
+            checkout.addEventListener('change', update);
 
-  function updateCheckOut() {
-    const out = new Date(checkIn);
-    out.setDate(out.getDate() + Number(nights.value));
-    document.getElementById('checkOutDate').textContent = fmt(out);
-    document.getElementById('checkOutDay').textContent  = day(out);
-  }
-  nights.addEventListener('change', updateCheckOut);
-  updateCheckOut();
-</script>
+            // Steppers
+            document.querySelectorAll('.stepper__btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var key = btn.dataset.target;
+                    var el = document.getElementById(key);
+                    var next = Number(el.textContent) + Number(btn.dataset.step);
+                    el.textContent = Math.min(LIMITS[key][1], Math.max(LIMITS[key][0], next));
+                    update();
+                });
+            });
+
+            // Save booking for the summary page, then continue
+            continueBtn.addEventListener('click', function (e) {
+                if (continueBtn.getAttribute('aria-disabled') === 'true') {
+                    e.preventDefault();
+                    return;
+                }
+                try {
+                    localStorage.setItem('azurisBooking', JSON.stringify({
+                        room: 'Allora Cove',
+                        rate: RATE,
+                        checkin: checkin.value,
+                        checkout: checkout.value,
+                        guests: Number(guestsEl.textContent),
+                        rooms: Number(roomsEl.textContent),
+                        nights: Number(nightsEl.textContent)
+                    }));
+                } catch (err) { /* storage unavailable: continue anyway */ }
+            });
+
+            update();
+        })();
+    </script>
+
 </body>
+
 </html>
