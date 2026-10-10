@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create Account | Azuris Coastal Hotel</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" />
+
+  <link rel="stylesheet" href="signup.css" />
+</head>
+
+<body>
+<div class="page">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <a href="index.html" class="back" aria-label="Back to home">
+      <svg viewBox="0 0 24 24"><polyline points="15 4 7 12 15 20"/></svg>
+    </a>
+    <a href="index.html" class="logo"><img src="image/logo.png" alt="Azuris Coastal Hotel" /></a>
+  </header>
+
+  <h1 class="title">Create Account</h1>
+
+  <!-- FORM -->
+  <form class="form" action="#" method="post">
+
+    <div class="field">
+      <label for="fullname">Full Name</label>
+      <div class="input">
+        <svg class="lead" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z"/></svg>
+        <input type="text" id="fullname" name="fullname" value="Nail D. Pako" autocomplete="name" required />
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="email">Email Address</label>
+      <div class="input">
+        <svg class="lead" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="1.5"/><polyline points="3 6.5 12 13 21 6.5"/></svg>
+        <input type="email" id="email" name="email" value="naildpako@gmail.com" autocomplete="email" required />
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="password">Password</label>
+      <div class="input">
+        <svg class="lead lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
+        <input type="password" id="password" name="password" value="12345678" autocomplete="new-password" required />
+        <button type="button" class="eye" data-target="password" aria-label="Show password">
+          <svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3" fill="currentColor"/><line class="slash" x1="3" y1="20" x2="21" y2="4" stroke-width="2.2"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="confirm">Confirm Password</label>
+      <div class="input">
+        <svg class="lead lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
+        <input type="password" id="confirm" name="confirm" value="12345678" autocomplete="new-password" required />
+        <button type="button" class="eye" data-target="confirm" aria-label="Show confirm password">
+          <svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3" fill="currentColor"/><line class="slash" x1="3" y1="20" x2="21" y2="4" stroke-width="2.2"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-signup">Sign Up</button>
+  </form>
+
+  <p class="login">Already have an account? <a href="../log in/login.html">Log In</a>
+
+</div>
+
+<script>
+  // password show / hide (slash icon = hidden)
+  document.querySelectorAll('.eye').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const input = document.getElementById(btn.dataset.target);
+      const show = input.type === 'password';
+      input.type = show ? 'text' : 'password';
+      btn.classList.toggle('shown', show);
+      btn.setAttribute('aria-label', (show ? 'Hide ' : 'Show ') + (btn.dataset.target === 'confirm' ? 'confirm password' : 'password'));
+    });
+  });
+</script>
+</body>
+</html>

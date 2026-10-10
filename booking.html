@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Booking Details | Azuris Coastal Hotel</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Cinzel+Decorative:wght@400;700;900&display=swap" />
+
+  <link rel="stylesheet" href="booking.css" />
+</head>
+
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-bar">
+      <a href="room.html" class="back" aria-label="Back">
+        <svg viewBox="0 0 24 24"><polyline points="15 4 7 12 15 20"/></svg>
+      </a>
+      <h1>Booking Details</h1>
+      <a href="index.html" class="logo"><img src="image/logo.png" alt="Azuris Coastal Hotel" /></a>
+    </div>
+  </header>
+
+  <!-- CONTENT PANEL -->
+  <main class="panel">
+
+    <!-- selected room -->
+    <section class="block">
+      <h2 class="label">Selected Room</h2>
+      <article class="room">
+        <img src="image/room-s.jpg" alt="Allora Cove room" />
+        <div class="room-info">
+          <h3>Allora Cove</h3>
+          <span class="room-type">Standard</span>
+          <strong class="room-price">₱ 4, 200 / night</strong>
+        </div>
+      </article>
+    </section>
+
+    <!-- booking information -->
+    <section class="block">
+      <h2 class="label">Booking Information</h2>
+
+      <form class="form" id="bookingForm" action="payment.html">
+
+        <!-- dates -->
+        <div class="dates">
+          <div class="field">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="16" rx="3"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+              <line x1="8" y1="3" x2="8" y2="7"/>
+              <line x1="16" y1="3" x2="16" y2="7"/>
+              <circle cx="8" cy="14" r=".8" fill="currentColor"/>
+              <circle cx="12" cy="14" r=".8" fill="currentColor"/>
+              <circle cx="16" cy="14" r=".8" fill="currentColor"/>
+              <circle cx="8" cy="17.5" r=".8" fill="currentColor"/>
+              <circle cx="12" cy="17.5" r=".8" fill="currentColor"/>
+            </svg>
+            <div class="field-text">
+              <span class="field-label">Check - in</span>
+              <span class="field-value" id="checkInDate">Dec 12, 2026</span>
+              <span class="field-sub" id="checkInDay">(Saturday)</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="16" rx="3"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+              <line x1="8" y1="3" x2="8" y2="7"/>
+              <line x1="16" y1="3" x2="16" y2="7"/>
+              <circle cx="8" cy="14" r=".8" fill="currentColor"/>
+              <circle cx="12" cy="14" r=".8" fill="currentColor"/>
+              <circle cx="16" cy="14" r=".8" fill="currentColor"/>
+              <circle cx="8" cy="17.5" r=".8" fill="currentColor"/>
+              <circle cx="12" cy="17.5" r=".8" fill="currentColor"/>
+            </svg>
+            <div class="field-text">
+              <span class="field-label">Check - out</span>
+              <span class="field-value" id="checkOutDate">Dec 13, 2026</span>
+              <span class="field-sub" id="checkOutDay">(Sunday)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- guests -->
+        <label class="field select">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 21c0-4.5 3.5-7 8-7s8 2.5 8 7"/>
+          </svg>
+          <div class="field-text">
+            <span class="field-label">Guests</span>
+            <select name="guests">
+              <option>1 Adult</option>
+              <option>2 Adults</option>
+              <option>3 Adults</option>
+              <option selected>4 Adults</option>
+              <option>5 Adults</option>
+            </select>
+          </div>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </label>
+
+        <!-- room types -->
+        <label class="field select">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 19V8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v11"/>
+            <rect x="3" y="12" width="18" height="4" rx="1"/>
+            <rect x="6" y="8.5" width="5" height="3" rx="1"/>
+            <rect x="13" y="8.5" width="5" height="3" rx="1"/>
+          </svg>
+          <div class="field-text">
+            <span class="field-label">Room Types</span>
+            <select name="roomType">
+              <option selected>Standard</option>
+              <option>Deluxe</option>
+              <option>Suite</option>
+            </select>
+          </div>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </label>
+
+        <!-- no. of room -->
+        <label class="field select">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <circle cx="9" cy="12" r="1.3"/>
+            <line x1="14" y1="9" x2="14" y2="15"/>
+          </svg>
+          <div class="field-text">
+            <span class="field-label">No. of Room</span>
+            <select name="rooms">
+              <option>1</option>
+              <option selected>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </label>
+
+        <!-- no. of nights -->
+        <label class="field select">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/>
+          </svg>
+          <div class="field-text">
+            <span class="field-label">No. of Nights</span>
+            <select name="nights" id="nights">
+              <option selected>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </label>
+
+      </form>
+    </section>
+
+    <!-- footer -->
+    <footer class="foot">
+      <p>Review your booking infromation before<br />proceeding to payment.</p>
+      <button type="submit" form="bookingForm" class="btn">Continue to Payment</button>
+    </footer>
+
+  </main>
+
+</div>
+
+<script>
+  // update check-out date when number of nights changes
+  const nights = document.getElementById('nights');
+  const checkIn = new Date(2026, 11, 12); // Dec 12, 2026
+
+  const fmt = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  const day = d => '(' + d.toLocaleDateString('en-US', { weekday: 'long' }) + ')';
+
+  document.getElementById('checkInDate').textContent = fmt(checkIn);
+  document.getElementById('checkInDay').textContent  = day(checkIn);
+
+  function updateCheckOut() {
+    const out = new Date(checkIn);
+    out.setDate(out.getDate() + Number(nights.value));
+    document.getElementById('checkOutDate').textContent = fmt(out);
+    document.getElementById('checkOutDay').textContent  = day(out);
+  }
+  nights.addEventListener('change', updateCheckOut);
+  updateCheckOut();
+</script>
+</body>
+</html>
