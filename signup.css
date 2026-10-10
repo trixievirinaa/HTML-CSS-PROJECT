@@ -38,7 +38,7 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 -22px;          /* arrow + logo sit slightly wider than the form */
+  margin: 0 -22px;          
   padding-top: 44px;
 }
 .back { display: grid; place-items: center; width: 28px; height: 28px; font-size: 26px; color: #000; }
@@ -107,7 +107,7 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1
   color: #000;
 }
 .eye .slash { display: block; }
-.eye.shown .slash { display: none; }   /* no slash when password is visible */
+.eye.shown .slash { display: none; }   
 
 /* ---------- BUTTON ---------- */
 .btn-signup {
