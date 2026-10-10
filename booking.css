@@ -1,167 +1,404 @@
+/* ============================================================
+   RESET & TOKENS
+============================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 :root {
-  --blue: #232a9e;
-  --blue-2: #6266c8;
-  --blue-3: #9ba3eb;
-  --blue-label: #6c70d6;
-  --lav: #dde0fd;
-  --lav-2: #e9ebff;
-  --ink: #111111;
-  --radius: 14px;
+    --navy: #232a9b;
+    /* bottom of gradient / dark accents */
+    --navy-dark: #1a1f7a;
+    --indigo: #4a4fa8;
+    /* lower-mid gradient */
+    --periwinkle: #646fd4;
+    /* upper-mid gradient */
+    --lavender: #a9aad6;
+    /* mid gradient */
+    --lavender-light: #dbdffd;
+    /* gradient start / card dividers */
+    --card-bg: #e9ecff;
+    /* details card */
+    --white: #ffffff;
+    --green: #2ac55c;
+    /* total price bar */
+    --btn-soft: #6169d0;
+    /* continue button */
+    --btn-soft-dark: #525ac2;
+    --error: #d93636;
+    --text-dark: #0d0d1a;
+    --text-soft: rgba(255, 255, 255, 0.85);
+
+    --font-main: "Nunito", "Segoe UI", Arial, sans-serif;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Nunito, system-ui, sans-serif; color: var(--ink); background: var(--lav-2); }
-img { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
-button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
-svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-
-/* ---------- PHONE FRAME ---------- */
-.page {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 430px;
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 0 29px;
-  background: linear-gradient(180deg, #ffffff 0%, #ffffff 12%, #a8addf 48%, #6a70cb 74%, var(--blue) 100%);
-  box-shadow: 0 0 40px rgba(36, 47, 155, .15);
-  overflow: hidden;
+html,
+body {
+    height: 100%;
 }
 
-/* keep the narrow phone look on desktop */
-@media (min-width: 481px) {
-  body { padding: 20px 0; background: #2b2b2b; }
-  .page { height: 975px; min-height: 0; border-radius: 6px; }
+body {
+    font-family: var(--font-main);
+    background: #e9e9ef;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
 }
 
-/* ---------- HEADER ---------- */
-.header { flex: 0 0 auto; padding-top: 54px; }
-.header-bar { display: flex; align-items: center; height: 34px; }
-
-.back {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  margin-left: 12px;
-  font-size: 30px;
-  color: #000;
-}
-.back svg { stroke-width: 3.2; }
-
-.header-bar h1 {
-  margin-left: 11px;
-  font-size: 27px;
-  font-weight: 800;
-  line-height: 34px;
-  color: #000;
-  white-space: nowrap;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-.logo { margin-left: auto; display: block; }
-.logo img { width: 115px; height: auto; }
-
-/* ---------- CONTENT PANEL ---------- */
-.panel { flex: 1; display: flex; flex-direction: column; }
-
-.label {
-  margin: 0 0 11px 3px;
-  font-size: 17px;
-  font-weight: 500;
-  line-height: 23px;
-  color: var(--ink);
-}
-.block:first-child { margin-top: 21px; }
-.block + .block { margin-top: 19px; }
-
-/* ---------- ROOM CARD ---------- */
-.room {
-  display: flex;
-  align-items: center;
-  gap: 26px;
-  height: 150px;
-  padding: 0 13px;
-  border-radius: var(--radius);
-  background: var(--lav);
-}
-.room img {
-  flex: 0 0 auto;
-  width: 133px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 3px;
-}
-.room-info { display: flex; flex-direction: column; }
-.room-info h3 { font-size: 20px; font-weight: 800; line-height: 26px; }
-.room-type { margin-top: 7px; font-size: 12px; font-weight: 500; line-height: 17px; }
-.room-price { margin-top: 14px; font-size: 21px; font-weight: 800; line-height: 28px; }
-
-/* ---------- FORM FIELDS ---------- */
-.form { display: flex; flex-direction: column; gap: 21px; }
-
-.dates { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
-
-.field {
-  display: flex;
-  align-items: center;
-  gap: 19px;
-  height: 59px;
-  padding: 0 19px 0 20px;
-  border-radius: 14px;
-  background: var(--lav-2);
-}
-.dates .field { height: 86px; padding: 0 11px 0 14px; }
-
-.icon { flex: 0 0 auto; width: 32px; height: 32px; color: #000; }
-
-.field-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
-.field-label { font-size: 12px; font-weight: 500; line-height: 21px; color: var(--blue-label); }
-.field-value { font-size: 12px; font-weight: 600; line-height: 21px; color: var(--ink); }
-.field-sub   { font-size: 12px; font-weight: 500; line-height: 21px; color: var(--blue-label); }
-
-.select { cursor: pointer; }
-.select select {
-  appearance: none;
-  -webkit-appearance: none;
-  display: block;
-  width: 100%;
-  height: 21px;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  font: inherit;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 21px;
-  color: var(--ink);
-  cursor: pointer;
-}
-.chev { flex: 0 0 auto; width: 20px; height: 20px; stroke-width: 3.2; color: #000; }
-
-/* ---------- FOOTER ---------- */
-.foot { margin-top: 37px; text-align: center; }
-.foot p {
-  margin-bottom: 29px;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 14px;
-  color: #fff;
+ul {
+    list-style: none;
 }
 
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* ============================================================
+   SCREEN (mobile frame, fills the viewport on phones)
+============================================================ */
+.screen {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 24px 26px 40px;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg,
+            var(--white) 0%,
+            var(--white) 6%,
+            var(--lavender-light) 20%,
+            var(--lavender) 45%,
+            var(--periwinkle) 65%,
+            var(--navy) 100%);
+}
+
+/* ============================================================
+   HEADER (back + title + logo)
+============================================================ */
+.screen__header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 -8px;
+}
+
+.screen__back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    margin-left: -4px;
+    color: var(--text-dark);
+    border-radius: 50%;
+}
+
+.screen__back:focus-visible {
+    outline: 2px solid var(--navy);
+    outline-offset: 2px;
+}
+
+.screen__title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    white-space: nowrap;
+    color: var(--text-dark);
+}
+
+/* ============================================================
+   LOGO
+============================================================ */
+.screen__logo-wrap {
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.screen__logo {
+    width: 100%;
+    max-width: 112px;
+    height: auto;
+}
+
+/* ============================================================
+   DETAILS CARD
+============================================================ */
+.summary {
+    margin-top: 34px;
+    border-radius: 14px;
+    background: var(--card-bg);
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(20, 24, 100, 0.18);
+}
+
+/* ---- Room ---- */
+.summary__room {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 32px 27px 28px;
+    border-bottom: 4px solid var(--lavender-light);
+}
+
+.summary__room-img {
+    width: 140px;
+    height: 120px;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.summary__room-name {
+    margin-bottom: 6px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+.summary__room-rate {
+    font-size: 1.05rem;
+    font-weight: 800;
+    white-space: nowrap;
+    color: var(--text-dark);
+}
+
+/* ---- Fields ---- */
+.summary__details {
+    display: grid;
+    gap: 16px;
+    padding: 30px 22px 28px 27px;
+    border-bottom: 4px solid var(--lavender-light);
+}
+
+.detail {
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    align-items: center;
+    column-gap: 18px;
+    min-height: 40px;
+}
+
+.detail__icon {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: var(--text-dark);
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.detail__icon .dots {
+    stroke-width: 2.4;
+}
+
+.detail__label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.detail__value {
+    min-width: 40px;
+    padding-right: 10px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: right;
+    color: var(--text-dark);
+}
+
+/* ---- Date input ---- */
+.detail__date {
+    width: 132px;
+    height: 36px;
+    padding: 0 8px;
+    font-family: var(--font-main);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    background: var(--white);
+    border: 1px solid var(--lavender);
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+}
+
+.detail__date:focus-visible {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(35, 42, 155, 0.25);
+}
+
+/* ---- Stepper ---- */
+.stepper {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.stepper__btn {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    font-family: var(--font-main);
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--navy);
+    background: var(--white);
+    border: 1.5px solid var(--navy);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.stepper__btn:hover {
+    background: var(--navy);
+    color: var(--white);
+}
+
+.stepper__btn:active {
+    transform: scale(0.94);
+}
+
+.stepper__btn:focus-visible {
+    outline: 3px solid rgba(35, 42, 155, 0.45);
+    outline-offset: 2px;
+}
+
+.stepper__value {
+    min-width: 28px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text-dark);
+}
+
+/* ---- Error ---- */
+.form__error {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--error);
+}
+
+.form__error[hidden] {
+    display: none;
+}
+
+/* ---- Room price ---- */
+.summary__price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 33px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* ---- Total ---- */
+.summary__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 62px;
+    padding: 0 27px 0 28px;
+    background: var(--green);
+    color: var(--white);
+    font-size: 1.45rem;
+    font-weight: 600;
+}
+
+/* ============================================================
+   ACTIONS
+============================================================ */
+.screen__actions {
+    margin-top: auto;
+    padding-top: 50px;
+}
+
+/* ============================================================
+   BUTTONS
+============================================================ */
 .btn {
-  display: block;
-  width: calc(100% + 14px);
-  height: 60px;
-  margin: 0 -7px;
-  border-radius: 999px;
-  background: var(--blue-2);
-  color: #fff;
-  font-size: 19px;
-  font-weight: 700;
-  transition: background .2s, transform .1s;
+    display: block;
+    width: 100%;
+    padding: 11px 16px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid var(--text-dark);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease, opacity 0.2s ease;
 }
-.btn:hover { background: #5559bb; }
-.btn:active { transform: translateY(1px); }
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn:focus-visible {
+    outline: 3px solid rgba(35, 42, 155, 0.45);
+    outline-offset: 2px;
+}
+
+.btn--primary {
+    background: var(--navy);
+    color: var(--white);
+}
+
+.btn--primary:hover {
+    background: var(--navy-dark);
+}
+
+/* Pill-shaped CTA used at the bottom of this screen */
+.screen__actions .btn {
+    padding: 18px 16px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 999px;
+    background: var(--btn-soft);
+    color: var(--white);
+    box-shadow: 0 5px 12px rgba(20, 24, 100, 0.3);
+}
+
+.screen__actions .btn:hover {
+    background: var(--btn-soft-dark);
+}
+
+.screen__actions .btn.is-disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* ============================================================
+   DESKTOP: show as a centered phone-sized card
+============================================================ */
+@media (min-width: 600px) {
+    body {
+        align-items: center;
+        padding: 24px 0;
+    }
+
+    .screen {
+        min-height: 860px;
+        border-radius: 28px;
+        box-shadow: 0 12px 40px rgba(35, 42, 155, 0.25);
+        overflow: hidden;
+    }
+}
