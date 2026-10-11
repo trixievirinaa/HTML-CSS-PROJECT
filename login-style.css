@@ -1,149 +1,293 @@
+/* ============================================================
+   RESET & TOKENS
+============================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 :root {
-  --blue: #242f9b;
-  --blue-2: #646fd4;
-  --blue-3: #9ba3eb;
-  --lav: #dbdffd;
-  --lav-2: #e9ecff;
-  --ink: #191818;
+    --navy: #232a9b;
+    --navy-dark: #1a1f7a;
+    --indigo: #4a4fa8;
+    --lavender: #a9aad6;
+    --border: #8b8fd0;
+    --white: #ffffff;
+    --text-dark: #0d0d1a;
+    --text-soft: rgba(255, 255, 255, 0.9);
+
+    --font-main: "Nunito", "Segoe UI", Arial, sans-serif;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Nunito, system-ui, sans-serif; color: var(--ink); background: var(--lav-2); }
-img { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
-button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
-svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-
-/* ---------- PHONE FRAME ---------- */
-.page {
-  width: 100%;
-  max-width: 360px;
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 0 40px 40px;
-  background: linear-gradient(180deg, #fff 0%, var(--lav) 25%, var(--blue-3) 55%, var(--blue-2) 80%, #4650b8 100%);
-  box-shadow: 0 0 40px rgba(36, 47, 155, .15);
-  overflow: hidden;
+html,
+body {
+    height: 100%;
 }
 
-/* keep the narrow phone look on desktop */
-@media (min-width: 481px) {
-  body { padding: 24px 0; }
-  .page { min-height: 820px; }
+body {
+    font-family: var(--font-main);
+    background: #e9e9ef;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
 }
 
-/* ---------- TOP BAR ---------- */
-.topbar { padding-top: 44px; margin-left: -22px; }
-.back { display: grid; place-items: center; width: 28px; height: 28px; font-size: 26px; color: #000; }
-.back svg { stroke-width: 2.8; }
-
-/* ---------- LOGO ---------- */
-.logo { display: block; margin: 62px -16px 0; }
-.logo img { width: 100%; height: auto; }
-
-/* ---------- FIELDS ---------- */
-.form { margin-top: 44px; }
-.field { margin-bottom: 11px; }
-.field label { display: block; margin-bottom: 3px; padding-left: 3px; font-size: 9.5px; font-weight: 600; color: var(--ink); }
-
-.input {
-  position: relative;
-  height: 42px;
-  border: 1px solid #14141c;
-  border-radius: 10px;
-  background: #fff;
+a {
+    text-decoration: none;
+    color: inherit;
 }
-.input input {
-  width: 100%;
-  height: 100%;
-  padding: 0 44px 0 44px;
-  border: 0;
-  border-radius: 10px;
-  outline: none;
-  background: transparent;
-  font-family: Nunito, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink);
-}
-.input:focus-within { box-shadow: 0 0 0 2px var(--blue-2); }
 
-.lead {
-  position: absolute;
-  left: 13px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 20px;
-  color: #000;
-  pointer-events: none;
+button {
+    font-family: var(--font-main);
+    cursor: pointer;
 }
-.lead.lock rect { fill: currentColor; }
 
-.eye {
-  position: absolute;
-  right: 11px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  font-size: 22px;
-  color: #000;
+/* ============================================================
+   SCREEN
+============================================================ */
+.screen {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 24px 33px 40px;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg,
+            var(--white) 0%,
+            var(--white) 8%,
+            var(--lavender) 55%,
+            var(--indigo) 100%);
 }
-.eye .slash { display: block; }
-.eye.shown .slash { display: none; }
 
-/* ---------- LOG IN BUTTON ---------- */
-.btn-login {
-  display: block;
-  width: 100%;
-  height: 42px;
-  margin-top: 24px;
-  border: 1px solid #14141c;
-  border-radius: 10px;
-  background: var(--blue);
-  color: #fff;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: .3px;
-  transition: background .2s, transform .1s;
+/* ============================================================
+   BACK BUTTON
+============================================================ */
+.screen__back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-left: -10px;
+    color: var(--text-dark);
+    border-radius: 50%;
 }
-.btn-login:hover { background: #1c2580; }
-.btn-login:active { transform: translateY(1px); }
 
-/* ---------- DIVIDER ---------- */
+.screen__back:focus-visible {
+    outline: 2px solid var(--navy);
+    outline-offset: 2px;
+}
+
+/* ============================================================
+   LOGO
+============================================================ */
+.screen__logo-wrap {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.screen__logo {
+    width: 100%;
+    max-width: 230px;
+    height: auto;
+}
+
+/* ============================================================
+   FORM FIELDS
+============================================================ */
+.login {
+    margin-top: 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.field__label {
+    display: block;
+    margin: 0 0 3px 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.field__box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 46px;
+    padding: 0 12px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-dark);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field__box:focus-within {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(35, 42, 155, 0.2);
+}
+
+.field__icon {
+    flex-shrink: 0;
+}
+
+.field__input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    color: var(--text-dark);
+}
+
+.field__input::placeholder {
+    color: #7a7a8c;
+}
+
+/* Show / hide password button */
+.field__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--text-dark);
+}
+
+.field__toggle .icon-shown {
+    display: none;
+}
+
+.field__toggle.is-visible .icon-hidden {
+    display: none;
+}
+
+.field__toggle.is-visible .icon-shown {
+    display: block;
+}
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn:focus-visible {
+    outline: 3px solid rgba(35, 42, 155, 0.45);
+    outline-offset: 2px;
+}
+
+.btn--primary {
+    margin-top: 8px;
+    height: 50px;
+    background: var(--navy);
+    color: var(--white);
+    box-shadow: 0 4px 10px rgba(26, 31, 122, 0.4);
+}
+
+.btn--primary:hover {
+    background: var(--navy-dark);
+}
+
+.btn--google {
+    height: 46px;
+    background: var(--white);
+    color: var(--text-dark);
+    border-color: var(--border);
+}
+
+.btn--google:hover {
+    background: #f0f0f8;
+}
+
+/* ============================================================
+   DIVIDER ("or")
+============================================================ */
 .divider {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 40px -10px 46px;
-  font-size: 11px;
-  color: #111;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 30px -33px 30px;
+    /* lines run to the screen edges */
+    font-size: 0.8rem;
+    color: var(--text-dark);
 }
+
 .divider::before,
-.divider::after { content: ''; flex: 1; height: 1px; background: #1a1a2a; }
-
-/* ---------- GOOGLE BUTTON ---------- */
-.btn-google {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  height: 42px;
-  border: 1px solid #14141c;
-  border-radius: 10px;
-  background: #fff;
-  color: #111;
-  font-size: 14.5px;
-  transition: background .2s, transform .1s;
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--text-dark);
 }
-.btn-google .g { width: 22px; height: 22px; stroke: none; }
-.btn-google:hover { background: #f3f4ff; }
-.btn-google:active { transform: translateY(1px); }
 
-/* ---------- FOOTER TEXT ---------- */
-.signup { margin-top: 22px; text-align: center; font-size: 12px; color: #fff; }
-.signup a { margin-left: 4px; text-decoration: underline; }
-.signup a:hover { color: var(--lav); }
+.divider::before {
+    margin-left: 10px;
+}
+
+.divider::after {
+    margin-right: 10px;
+}
+
+/* ============================================================
+   FOOTER LINKS
+============================================================ */
+.screen__footer {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-soft);
+}
+
+.screen__footer a:hover {
+    color: var(--white);
+}
+
+.screen__footer-link {
+    text-decoration: underline;
+}
+
+/* ============================================================
+   DESKTOP: centered phone-sized card
+============================================================ */
+@media (min-width: 600px) {
+    body {
+        align-items: center;
+        padding: 24px 0;
+    }
+
+    .screen {
+        min-height: 860px;
+        border-radius: 28px;
+        box-shadow: 0 12px 40px rgba(35, 42, 155, 0.25);
+        overflow: hidden;
+    }
+}
