@@ -1,0 +1,248 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --navy: #232a9b;
+    --lavender-light: #dbdffd;
+    --lavender-soft: #cdd2fb;
+    --divider: #e3e6fb;
+    --white: #ffffff;
+    --star: #f5b301;
+    --text-dark: #0d0d1a;
+
+    --font-main: "Nunito", "Segoe UI", Arial, sans-serif;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    font-family: var(--font-main);
+    background: #e9e9ef;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.screen {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 430px;
+    height: 100vh;
+    height: 100dvh;
+    background: var(--white);
+    overflow: hidden;
+}
+
+.screen__back {
+    position: absolute;
+    top: 20px;
+    left: 18px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--text-dark);
+    border-radius: 50%;
+}
+
+.screen__back:focus-visible {
+    outline: 2px solid var(--navy);
+    outline-offset: 2px;
+}
+
+.screen__scroll {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.screen__scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.screen__scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.hero__img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+}
+
+.sheet {
+    position: relative;
+    margin-top: -44px;
+    padding: 28px 26px 24px;
+    background: var(--white);
+    border-radius: 40px 40px 0 0;
+}
+
+.sheet__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.sheet__name {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+.rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--text-dark);
+}
+
+.rating__star {
+    width: 22px;
+    height: 22px;
+    fill: var(--star);
+}
+
+.sheet__guests {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 16px 0 0 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.sheet__divider {
+    height: 2px;
+    margin: 20px 0;
+    border: none;
+    background: var(--divider);
+}
+
+.sheet__heading {
+    margin-left: 2px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--navy);
+}
+
+.sheet__text {
+    margin: 14px 0 0 20px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text-dark);
+}
+
+.amenities {
+    display: grid;
+    gap: 14px;
+    margin: 16px 0 0 22px;
+}
+
+.amenity {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.icon {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    fill: none;
+    stroke: var(--text-dark);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.screen__bar {
+    padding: 14px 26px 22px;
+    background: var(--white);
+    box-shadow: 0 -10px 16px rgba(255, 255, 255, 0.95);
+}
+
+.screen__price {
+    margin: 0 0 10px 4px;
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    font-family: var(--font-main);
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text-dark);
+    background: var(--lavender-light);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+    background: var(--lavender-soft);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn:focus-visible {
+    outline: 3px solid rgba(35, 42, 155, 0.45);
+    outline-offset: 2px;
+}
+
+@media (min-width: 600px) {
+    body {
+        align-items: center;
+        padding: 24px 0;
+    }
+
+    .screen {
+        height: min(860px, calc(100dvh - 48px));
+        border-radius: 28px;
+        box-shadow: 0 12px 40px rgba(35, 42, 155, 0.25);
+    }
+}
