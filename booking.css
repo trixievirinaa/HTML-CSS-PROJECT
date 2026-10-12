@@ -1,404 +1,117 @@
-/* ============================================================
-   RESET & TOKENS
-============================================================ */
 *,
 *::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#232a9b;--periwinkle:#646fd4;--lavender:#a9aad6;--lavender-light:#dbdffd;--card-bg:#e9ecff;--white:#fff;--btn-soft:#6169d0;--btn-soft-dark:#525ac2;--label:#4f58b8;--text-dark:#0d0d1a;--green:#2cc55e;--font-main:"Nunito","Segoe UI",Arial,sans-serif}
+html{height:100%}
+body{min-height:100%;font-family:var(--font-main);background:#e9e9ef;display:flex;justify-content:center;align-items:stretch}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+svg.i{fill:none;stroke:var(--text-dark);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
-:root {
-    --navy: #232a9b;
-    /* bottom of gradient / dark accents */
-    --navy-dark: #1a1f7a;
-    --indigo: #4a4fa8;
-    /* lower-mid gradient */
-    --periwinkle: #646fd4;
-    /* upper-mid gradient */
-    --lavender: #a9aad6;
-    /* mid gradient */
-    --lavender-light: #dbdffd;
-    /* gradient start / card dividers */
-    --card-bg: #e9ecff;
-    /* details card */
-    --white: #ffffff;
-    --green: #2ac55c;
-    /* total price bar */
-    --btn-soft: #6169d0;
-    /* continue button */
-    --btn-soft-dark: #525ac2;
-    --error: #d93636;
-    --text-dark: #0d0d1a;
-    --text-soft: rgba(255, 255, 255, 0.85);
+/* ---------- Screen shell ---------- */
+.screen{display:none;position:relative;width:100%;max-width:430px;height:100vh;height:100dvh;flex-direction:column;overflow:hidden;
+background:linear-gradient(180deg,#fff 0%,#fff 6%,var(--lavender-light) 20%,var(--lavender) 45%,var(--periwinkle) 65%,var(--navy) 100%)}
+.screen.active{display:flex}
+.screen__scroll{flex:1;min-height:0;padding:0 26px 24px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;display:flex;flex-direction:column}
+.screen__scroll::-webkit-scrollbar{display:none}
+.screen__header{flex-shrink:0;display:flex;align-items:center;gap:6px;padding:24px 18px 10px;z-index:2}
+.screen__back{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;margin-left:-4px;color:var(--text-dark);border-radius:50%;background:none;border:none;cursor:pointer}
+.screen__title{font-size:1.5rem;font-weight:800;white-space:nowrap;color:var(--text-dark)}
+.screen__logo-wrap{height:40px;margin-left:auto;display:flex;align-items:center;justify-content:flex-end}
+.screen__logo{width:100%;max-width:112px;height:auto}
+.section-title{margin:20px 0 8px 2px;font-size:1.05rem;font-weight:500;color:var(--text-dark)}
 
-    --font-main: "Nunito", "Segoe UI", Arial, sans-serif;
-}
+/* ---------- Booking details ---------- */
+.room{display:flex;align-items:center;gap:22px;padding:12px;background:var(--card-bg);border-radius:10px}
+.room__img{width:124px;height:112px;flex-shrink:0;object-fit:cover}
+.room__name{font-size:1.3rem;font-weight:800}
+.room__type{margin-top:4px;font-size:.8rem;font-weight:600}
+.room__rate{margin-top:12px;font-size:1.15rem;font-weight:800;white-space:nowrap}
+.dates{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.date{position:relative;display:flex;align-items:center;gap:12px;min-height:82px;padding:12px;background:var(--card-bg);border-radius:12px;cursor:pointer}
+.date__icon{flex-shrink:0;width:30px;height:30px}
+.date__text{display:flex;flex-direction:column;gap:3px;min-width:0}
+.date__label,.date__day{font-size:.75rem;font-weight:600;color:var(--label)}
+.date__value{font-size:.85rem;font-weight:700;white-space:nowrap}
+.date__input,.field__select{position:absolute;inset:0;width:100%;height:100%;border:none;opacity:0;cursor:pointer;appearance:none;-webkit-appearance:none}
+.form__error{margin-top:10px;padding:8px 12px;font-size:.78rem;font-weight:600;line-height:1.4;color:#8a1010;background:#ffd1d1;border-radius:8px}
+.form__error[hidden]{display:none}
+.fields{display:grid;gap:14px;margin-top:14px}
+.field{position:relative;display:grid;grid-template-columns:30px 1fr 24px;align-items:center;column-gap:16px;min-height:58px;padding:8px 16px 8px 18px;background:var(--card-bg);border-radius:12px}
+.field--static{grid-template-columns:30px 1fr}
+.field__icon{width:30px;height:30px}
+.field__text{display:flex;flex-direction:column;gap:2px}
+.field__label,.input__label{font-size:.75rem;font-weight:600;color:var(--label)}
+.field__value{font-size:.88rem;font-weight:700}
+.field__chevron{width:22px;height:22px;stroke-width:2.2}
 
-html,
-body {
-    height: 100%;
-}
+/* Payment method */
+.pay{display:grid;gap:10px}
+.pay__option{position:relative;display:grid;grid-template-columns:40px 1fr 22px;align-items:center;column-gap:14px;min-height:58px;padding:8px 16px 8px 14px;background:var(--card-bg);border:2px solid transparent;border-radius:12px;cursor:pointer;transition:border-color .15s,background .15s}
+.pay__option:has(.pay__radio:checked){border-color:var(--navy);background:#fff}
+.pay__radio{position:absolute;opacity:0;pointer-events:none}
+.pay__badge{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;font-size:.8rem;font-weight:800;color:#fff;border-radius:10px}
+.pay__badge--gcash{background:#0b6cf0}.pay__badge--maya{background:#17a35b}.pay__badge--card{background:var(--navy)}.pay__badge--bank{background:#7a4fd0}
+.pay__badge svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pay__name{font-size:.9rem;font-weight:700}
+.pay__dot{width:20px;height:20px;border:2px solid var(--label);border-radius:50%;background:#fff}
+.pay__option:has(.pay__radio:checked) .pay__dot{border-color:var(--navy);background:radial-gradient(circle,var(--navy) 0 45%,#fff 50%)}
+.pay__panel{display:grid;gap:10px;padding:14px;margin-top:10px;background:var(--card-bg);border-radius:12px}
+.pay__panel[hidden]{display:none}
+.pay__row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.input{display:grid;gap:4px}
+.input__control{width:100%;padding:12px 14px;font:700 .9rem var(--font-main);color:var(--text-dark);background:#fff;border:2px solid transparent;border-radius:10px}
+.input__control:focus{outline:none;border-color:var(--navy)}
+.input__control.is-invalid{border-color:#c62828}
+.pay__hint{font-size:.78rem;font-weight:600;line-height:1.4}
 
-body {
-    font-family: var(--font-main);
-    background: #e9e9ef;
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-}
+/* Bottom bar + buttons */
+.screen__bar{flex-shrink:0;display:flex;flex-direction:column;gap:12px;padding:16px 26px calc(20px + env(safe-area-inset-bottom,0px));background:#fff;border-radius:22px 22px 0 0;box-shadow:0 -4px 16px rgba(20,24,100,.18)}
+.screen__price{font-size:1.7rem;font-weight:800;line-height:1.2;white-space:nowrap}
+.screen__price small{font-size:.8rem;font-weight:600;color:var(--label)}
+.btn{display:block;width:100%;padding:18px 16px;font:700 1.05rem var(--font-main);text-align:center;color:#fff;background:var(--btn-soft);border:none;border-radius:999px;box-shadow:0 5px 12px rgba(20,24,100,.3);cursor:pointer;transition:background .2s,transform .1s,opacity .2s}
+.btn:hover{background:var(--btn-soft-dark)}
+.btn:active{transform:scale(.98)}
+.btn.is-disabled{opacity:.55;cursor:not-allowed;box-shadow:none}
+.screen__bar .btn{color:var(--text-dark);background:var(--lavender-light);box-shadow:none}
+.screen__bar .btn:hover{background:#c9cefb}
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
+/* ---------- Booking summary ---------- */
+.summary{margin-top:34px;background:var(--card-bg);border-radius:18px;overflow:hidden;box-shadow:0 6px 18px rgba(20,24,100,.15)}
+.summary__room{display:flex;align-items:center;gap:24px;padding:26px 26px 22px}
+.summary__img{width:140px;height:120px;flex-shrink:0;object-fit:cover}
+.summary__name{font-size:1.05rem;font-weight:800}
+.summary__rate{margin-top:8px;font-size:1.05rem;font-weight:800;white-space:nowrap}
+.summary__divider{height:4px;background:var(--lavender-light)}
+.summary__rows{display:grid;gap:22px;padding:28px 26px}
+.srow{display:grid;grid-template-columns:28px 1fr auto;align-items:center;column-gap:16px}
+.srow svg{width:26px;height:26px}
+.srow__label{font-size:.92rem;font-weight:600}
+.srow__value{width:92px;font-size:.8rem;font-weight:700}
+.srow__value.num{font-size:.9rem}
+.summary__price{display:flex;justify-content:space-between;align-items:center;padding:20px 32px 18px 32px;font-size:.92rem;font-weight:600}
+.summary__price b{font-weight:700}
+.summary__total{display:flex;justify-content:space-between;align-items:center;padding:16px 26px;font-size:1.45rem;font-weight:700;color:#fff;background:var(--green)}
+.screen__actions{margin-top:auto;padding-top:24px}
+.screen__actions .btn{font-size:.95rem;padding:20px 16px;box-shadow:0 6px 14px rgba(20,24,100,.3)}
 
-ul {
-    list-style: none;
-}
+/* ---------- Reference ID ---------- */
+.success{display:flex;flex-direction:column;align-items:center;margin-top:28px;text-align:center}
+.success__icon{display:flex;align-items:center;justify-content:center;width:84px;height:84px;color:#fff;background:var(--green);border-radius:50%;box-shadow:0 6px 16px rgba(44,197,94,.4)}
+.success__icon svg{width:44px;height:44px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.success__title{margin-top:16px;font-size:1.4rem;font-weight:800}
+.success__sub{margin-top:4px;font-size:.85rem;font-weight:600}
+.pid{margin-top:22px;padding:16px;text-align:center;background:#fff;border:2px dashed var(--navy);border-radius:14px}
+.pid__label{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--label)}
+.pid__value{margin-top:6px;font-size:1.25rem;font-weight:800;letter-spacing:.04em;word-break:break-all}
+.pid__copy{margin-top:10px;padding:8px 18px;font:700 .8rem var(--font-main);color:var(--navy);background:var(--card-bg);border:none;border-radius:999px;cursor:pointer}
+.ref{margin-top:18px;background:var(--card-bg);border-radius:14px;overflow:hidden}
+.ref .summary__rows{gap:12px;padding:18px 22px}
+.ref .srow{grid-template-columns:1fr auto}
+.ref .srow__value{width:auto;text-align:right;font-size:.85rem}
+.ref .summary__total{font-size:1.15rem;padding:14px 22px}
 
-img {
-    display: block;
-    max-width: 100%;
-}
-
-/* ============================================================
-   SCREEN (mobile frame, fills the viewport on phones)
-============================================================ */
-.screen {
-    position: relative;
-    width: 100%;
-    max-width: 430px;
-    min-height: 100vh;
-    min-height: 100dvh;
-    padding: 24px 26px 40px;
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(180deg,
-            var(--white) 0%,
-            var(--white) 6%,
-            var(--lavender-light) 20%,
-            var(--lavender) 45%,
-            var(--periwinkle) 65%,
-            var(--navy) 100%);
-}
-
-/* ============================================================
-   HEADER (back + title + logo)
-============================================================ */
-.screen__header {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin: 0 -8px;
-}
-
-.screen__back {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 40px;
-    height: 40px;
-    margin-left: -4px;
-    color: var(--text-dark);
-    border-radius: 50%;
-}
-
-.screen__back:focus-visible {
-    outline: 2px solid var(--navy);
-    outline-offset: 2px;
-}
-
-.screen__title {
-    font-size: 1.35rem;
-    font-weight: 800;
-    white-space: nowrap;
-    color: var(--text-dark);
-}
-
-/* ============================================================
-   LOGO
-============================================================ */
-.screen__logo-wrap {
-    margin-left: auto;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.screen__logo {
-    width: 100%;
-    max-width: 112px;
-    height: auto;
-}
-
-/* ============================================================
-   DETAILS CARD
-============================================================ */
-.summary {
-    margin-top: 34px;
-    border-radius: 14px;
-    background: var(--card-bg);
-    overflow: hidden;
-    box-shadow: 0 8px 20px rgba(20, 24, 100, 0.18);
-}
-
-/* ---- Room ---- */
-.summary__room {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    padding: 32px 27px 28px;
-    border-bottom: 4px solid var(--lavender-light);
-}
-
-.summary__room-img {
-    width: 140px;
-    height: 120px;
-    flex-shrink: 0;
-    object-fit: cover;
-}
-
-.summary__room-name {
-    margin-bottom: 6px;
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: var(--text-dark);
-}
-
-.summary__room-rate {
-    font-size: 1.05rem;
-    font-weight: 800;
-    white-space: nowrap;
-    color: var(--text-dark);
-}
-
-/* ---- Fields ---- */
-.summary__details {
-    display: grid;
-    gap: 16px;
-    padding: 30px 22px 28px 27px;
-    border-bottom: 4px solid var(--lavender-light);
-}
-
-.detail {
-    display: grid;
-    grid-template-columns: 24px 1fr auto;
-    align-items: center;
-    column-gap: 18px;
-    min-height: 40px;
-}
-
-.detail__icon {
-    width: 24px;
-    height: 24px;
-    fill: none;
-    stroke: var(--text-dark);
-    stroke-width: 1.7;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.detail__icon .dots {
-    stroke-width: 2.4;
-}
-
-.detail__label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text-dark);
-}
-
-.detail__value {
-    min-width: 40px;
-    padding-right: 10px;
-    font-size: 0.95rem;
-    font-weight: 700;
-    text-align: right;
-    color: var(--text-dark);
-}
-
-/* ---- Date input ---- */
-.detail__date {
-    width: 132px;
-    height: 36px;
-    padding: 0 8px;
-    font-family: var(--font-main);
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    background: var(--white);
-    border: 1px solid var(--lavender);
-    border-radius: 8px;
-    outline: none;
-    cursor: pointer;
-}
-
-.detail__date:focus-visible {
-    border-color: var(--navy);
-    box-shadow: 0 0 0 3px rgba(35, 42, 155, 0.25);
-}
-
-/* ---- Stepper ---- */
-.stepper {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.stepper__btn {
-    display: grid;
-    place-items: center;
-    width: 32px;
-    height: 32px;
-    font-family: var(--font-main);
-    font-size: 1.2rem;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--navy);
-    background: var(--white);
-    border: 1.5px solid var(--navy);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
-}
-
-.stepper__btn:hover {
-    background: var(--navy);
-    color: var(--white);
-}
-
-.stepper__btn:active {
-    transform: scale(0.94);
-}
-
-.stepper__btn:focus-visible {
-    outline: 3px solid rgba(35, 42, 155, 0.45);
-    outline-offset: 2px;
-}
-
-.stepper__value {
-    min-width: 28px;
-    font-size: 0.95rem;
-    font-weight: 700;
-    text-align: center;
-    color: var(--text-dark);
-}
-
-/* ---- Error ---- */
-.form__error {
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--error);
-}
-
-.form__error[hidden] {
-    display: none;
-}
-
-/* ---- Room price ---- */
-.summary__price {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 33px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text-dark);
-}
-
-/* ---- Total ---- */
-.summary__total {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 62px;
-    padding: 0 27px 0 28px;
-    background: var(--green);
-    color: var(--white);
-    font-size: 1.45rem;
-    font-weight: 600;
-}
-
-/* ============================================================
-   ACTIONS
-============================================================ */
-.screen__actions {
-    margin-top: auto;
-    padding-top: 50px;
-}
-
-/* ============================================================
-   BUTTONS
-============================================================ */
-.btn {
-    display: block;
-    width: 100%;
-    padding: 11px 16px;
-    font-family: var(--font-main);
-    font-size: 1rem;
-    font-weight: 500;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid var(--text-dark);
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.1s ease, opacity 0.2s ease;
-}
-
-.btn:active {
-    transform: scale(0.98);
-}
-
-.btn:focus-visible {
-    outline: 3px solid rgba(35, 42, 155, 0.45);
-    outline-offset: 2px;
-}
-
-.btn--primary {
-    background: var(--navy);
-    color: var(--white);
-}
-
-.btn--primary:hover {
-    background: var(--navy-dark);
-}
-
-/* Pill-shaped CTA used at the bottom of this screen */
-.screen__actions .btn {
-    padding: 18px 16px;
-    font-size: 1.05rem;
-    font-weight: 700;
-    border: none;
-    border-radius: 999px;
-    background: var(--btn-soft);
-    color: var(--white);
-    box-shadow: 0 5px 12px rgba(20, 24, 100, 0.3);
-}
-
-.screen__actions .btn:hover {
-    background: var(--btn-soft-dark);
-}
-
-.screen__actions .btn.is-disabled {
-    opacity: 0.55;
-    cursor: not-allowed;
-    box-shadow: none;
-}
-
-/* ============================================================
-   DESKTOP: show as a centered phone-sized card
-============================================================ */
-@media (min-width: 600px) {
-    body {
-        align-items: center;
-        padding: 24px 0;
-    }
-
-    .screen {
-        min-height: 860px;
-        border-radius: 28px;
-        box-shadow: 0 12px 40px rgba(35, 42, 155, 0.25);
-        overflow: hidden;
-    }
+@media (min-width:600px){
+body{align-items:center;padding:24px 0}
+.screen{height:min(860px,calc(100dvh - 48px));border-radius:28px;box-shadow:0 12px 40px rgba(35,42,155,.25)}
 }
